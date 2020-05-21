@@ -2,6 +2,9 @@
 const carrito = document.getElementById("carrito");
 const cursos = document.getElementById("lista-cursos");
 const listaCursos = document.querySelector("#lista-carrito tbody");
+const btnVaciarCarrito = document.getElementById("vaciar-carrito");
+
+
 
 //FUNCIONES
 
@@ -48,11 +51,20 @@ const eliminarCurso = (e) =>{
 	}
 }
 
+const vaciarCarrito = (e) =>{
+	while(listaCursos.firstChild){
+		listaCursos.remove(listaCursos.firstChild); 
+	}
+}
+
 
 //LISTENERS
 const cargarEventListeners = ()=>{
 	cursos.addEventListener('click', comprarCurso);
 
 	carrito.addEventListener('click', eliminarCurso);
+
+	btnVaciarCarrito.addEventListener('click', vaciarCarrito);
+
 }
 cargarEventListeners();
