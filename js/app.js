@@ -8,6 +8,24 @@ const btnVaciarCarrito = document.getElementById("vaciar-carrito");
 
 //FUNCIONES
 
+const obtenerCursoLocalStorage = () =>{
+	let cursosLS;
+	if(localStorage.getItem('cursos') === null){
+		cursosLS = [];
+	}else {
+		cursosLS = JSON.parse(localStorage.getItem('cursos'));
+	}
+	return cursosLS;
+}
+
+const guardarCursoLocalStorage = (curso)=>{
+	let cursos;
+	cursos = obtenerCursoLocalStorage();
+	cursos.push(curso);
+	localStorage.setItem('cursos', JSON.stringify(cursos));
+}
+
+
 const insertarACarrito = (curso) =>{
 	const row = document.createElement('tr');
 	row.innerHTML = `
@@ -20,7 +38,8 @@ const insertarACarrito = (curso) =>{
 		<a href="#" class="borrar-curso" data-id="${curso.id}">X</a>
 	</td>
 	`;
-	listaCursos.appendChild(row)
+	listaCursos.appendChild(row);
+	guardarCursoLocalStorage(curso);
 }
 
 const leerDatosCurso = (curso) =>{
