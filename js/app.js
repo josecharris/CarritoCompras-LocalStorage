@@ -76,6 +76,24 @@ const vaciarCarrito = (e) =>{
 	}
 }
 
+const leerLocalStorage = ()=>{
+	let cursosLS = obtenerCursoLocalStorage();
+	cursosLS.map((curso)=>{
+		const row = document.createElement('tr');
+		row.innerHTML = `
+		<td>
+			<img src='${curso.imagen}' width=100>
+		</td>
+		<td>${curso.titulo}</td>
+		<td>${curso.precio}</td>
+		<td>
+			<a href="#" class="borrar-curso" data-id="${curso.id}">X</a>
+		</td>
+		`;
+		listaCursos.appendChild(row);
+	})
+}
+
 
 //LISTENERS
 const cargarEventListeners = ()=>{
@@ -85,5 +103,6 @@ const cargarEventListeners = ()=>{
 
 	btnVaciarCarrito.addEventListener('click', vaciarCarrito);
 
+	document.addEventListener('DOMContentLoaded', leerLocalStorage);
 }
 cargarEventListeners();
