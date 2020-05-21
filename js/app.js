@@ -40,8 +40,19 @@ const comprarCurso = (e)=>{
 }
 
 
+const eliminarCurso = (e) =>{
+	e.preventDefault();
+	let curso;
+	if(e.target.classList.contains('borrar-curso')){
+		e.target.parentElement.parentElement.remove()
+	}
+}
+
+
 //LISTENERS
 const cargarEventListeners = ()=>{
 	cursos.addEventListener('click', comprarCurso);
+
+	carrito.addEventListener('click', eliminarCurso);
 }
 cargarEventListeners();
